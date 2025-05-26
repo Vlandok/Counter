@@ -22,7 +22,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Reset"/>
                                 <connections>
-                                    <action selector="resetTappedAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="z9d-tW-2Aa"/>
+                                    <action selector="didTapResetButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="z9d-tW-2Aa"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Kw0-Kn-dzs">
@@ -34,7 +34,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="+"/>
                                         <connections>
-                                            <action selector="plusTappedAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vzc-02-BQq"/>
+                                            <action selector="didTapPlusButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vzc-02-BQq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoz-Ze-air">
@@ -43,7 +43,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="-"/>
                                         <connections>
-                                            <action selector="minusTappedAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="s9v-Cl-yTS"/>
+                                            <action selector="didTapMinusButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="s9v-Cl-yTS"/>
                                         </connections>
                                     </button>
                                 </subviews>

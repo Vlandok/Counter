@@ -7,54 +7,53 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
-    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet private weak var plusButton: UIButton!
+    @IBOutlet private weak var minusButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
+    @IBOutlet private weak var historyTextView: UITextView!
+    @IBOutlet private weak var counterLabel: UILabel!
     
-    @IBOutlet weak var minusButton: UIButton!
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter
+    }()
     
-    @IBOutlet weak var resetButton: UIButton!
-    
-    @IBOutlet weak var historyTextView: UITextView!
-    
-    @IBOutlet weak var counterLabel: UILabel!
-    
-    private var currentValue: Int {
-        get {
-            return Int(counterLabel.text!)!
-        }
-        set {
-            counterLabel.text = "\(newValue)"
+    private var counter: Int = 0 {
+        didSet {
+            counterLabel.text = "\(counter)"
         }
     }
     
-    @IBAction func plusTappedAction() {
-        currentValue+=1
+    @IBAction private func didTapPlusButton() {
+        counter+=1
         addHistoryMsg("значение изменено на +1")
     }
     
-    @IBAction func minusTappedAction() {
-        if (currentValue > 0) {
-            currentValue-=1
+    @IBAction private func didTapMinusButton() {
+        if (counter > 0) {
+            counter-=1
             addHistoryMsg("значение изменено на -1")
         } else {
             addHistoryMsg("попытка уменьшить значение счётчика ниже 0")
         }
     }
     
-    @IBAction func resetTappedAction() {
-        currentValue = 0
+    @IBAction private func didTapResetButton() {
+        counter = 0
         addHistoryMsg("значение сброшено")
     }
     
     private func addHistoryMsg(_ msg: String) {
-        let timestamp = DateFormatter.localizedString(
-            from: Date(),
-            dateStyle: .medium,
-            timeStyle: .medium
-        )
+        let timestamp = dateFormatter.string(from: Date())
+        let newEntry = "\(timestamp): \(msg)"
+        historyTextView.text = (historyTextView.text ?? "") + "\n" + newEntry
         
-        historyTextView.text = historyTextView.text! + "\n\(timestamp): \(msg)"
+        let range = NSMakeRange(historyTextView.text.count - 1, 1)
+        historyTextView.scrollRangeToVisible(range)
     }
 }
 
